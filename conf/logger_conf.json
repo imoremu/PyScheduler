@@ -1,0 +1,48 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        },
+        "detailed": {
+            "format": "%(asctime)s - %(name)s - %(levelname)s - [%(module)s:%(funcName)s:%(lineno)d] - %(message)s"
+        }
+
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "simple",
+            "stream": "ext://sys.stdout"
+        },
+        "fileHandler": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "INFO",
+            "formatter": "detailed",
+            "filename": "./output/log/project.log",
+            "mode": "a",
+            "maxBytes": 10485760,
+            "backupCount": 20,
+            "encoding": "utf8"
+        }
+    },
+    "loggers": {
+        "scheduler.project_task_scheduler": {
+            "level": "INFO",
+            "handlers": ["console", "fileHandler"],
+            "propagate": false
+        },
+        "scheduler.project_used_resource_manager": {
+            "level": "DEBUG",
+            "handlers": ["console", "fileHandler"],
+            "propagate": false
+        }
+    },
+
+    "root": {
+        "level": "INFO",
+        "handlers": ["console", "fileHandler"]
+    }
+}
