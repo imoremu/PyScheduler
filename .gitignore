@@ -1,1 +1,6 @@
 .git/*
+output/log/*
+output/*
+*pycache*
+report.html
+.venv/*
