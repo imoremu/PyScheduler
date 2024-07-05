@@ -1,6 +1,7 @@
-.git/*
-output/log/*
-output/*
+.git/
+output/log/
+output/
 *pycache*
 report.html
-.venv/*
+.venv/
+__pycache__/

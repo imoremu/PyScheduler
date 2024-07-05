@@ -25,6 +25,7 @@ import logging.config
 import json
 import os
 
+
 def create_logger(name):
     # Get the path to the configuration file
     config_path = os.path.join(os.path.dirname(__file__), '../conf/logger_conf.json')
@@ -32,6 +33,14 @@ def create_logger(name):
     # Load the configuration from the json file
     with open(config_path, 'r') as f:
         config = json.load(f)
+
+    # Create directories needed for file handlers
+    for handler in config['handlers'].values():
+        if 'filename' in handler:
+            log_directory = os.path.dirname(handler['filename'])
+            if not os.path.exists(log_directory):
+                os.makedirs(log_directory)
+
     logging.config.dictConfig(config)
 
     # Create and return the logger
